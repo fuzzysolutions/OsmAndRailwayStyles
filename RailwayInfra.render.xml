@@ -1,0 +1,664 @@
+<renderingStyle name="RailwayInfra" depends="default" defaultColor="#f1eae4" version="1.0">
+<!-- OpenRailwayMap-inspired Rendering Style for OsmAnd by dvärgsignal -->	
+<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+<!-- for compatibility of copied content-->
+<renderingAttribute name="defaultColor">
+		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
+		<!-- To change default color completely you should do that also for tag="place" value="island" and tag="natural" value="land" (search this file) -->
+		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
+		<case attrColorValue="#ebe7e4">
+			<apply_if nightMode="true" attrColorValue="#121926"/>
+		</case>
+</renderingAttribute>
+
+<!-- done -->
+<!-- railway colors -->
+	<renderingAttribute name="railwayRailColor"> <!-- TODO: rename to mainColor -->
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#ff8100"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="landuseRailwayColor"> <!-- this is custom, not ORM. Todo: debug -->
+		<!-- <case nightMode="true" attrColorValue="$defaultColor"/> -->
+		<!-- <case moreDetailed="true" attrColorValue="#e0ddda"/> -->
+		<case attrColorValue="e2e2e2"/>	
+	</renderingAttribute>
+	
+	<!-- Other colors, not in use yet -->
+	<renderingAttribute name="highSpeedColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#ff0c00"/>
+	</renderingAttribute>
+	<renderingAttribute name="branchColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#c4b600"/>
+	</renderingAttribute>
+	<renderingAttribute name="narrowGaugeColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#c0da00"/>
+	</renderingAttribute>
+	<renderingAttribute name="noUsageColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="disusedColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#70584d"/>
+	</renderingAttribute>
+	<renderingAttribute name="abandonedColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#7f6a62"/>
+	</renderingAttribute>
+	<renderingAttribute name="razedColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#94847e"/>
+	</renderingAttribute>
+	<renderingAttribute name="tramColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#d877b8"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayColor">
+		<!-- <case nightMode="true" attrColorValue="#7b0000"/> -->
+		<case attrColorValue="#0300c3"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightRailColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#00bd14"/>
+	</renderingAttribute>
+	<renderingAttribute name="sidingColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="yardColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#000000"/>	
+	</renderingAttribute>
+	<renderingAttribute name="spurColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#87491d"/>
+	</renderingAttribute>
+	<renderingAttribute name="industrialColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#87491d"/>
+	</renderingAttribute>
+	<renderingAttribute name="preservedColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#70584d"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="railwayCasingColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="bridgeCasingColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="tunnelColor">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#979797"/>
+	</renderingAttribute>
+	<renderingAttribute name="turntableFill">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#ababab"/>
+	</renderingAttribute>
+	<renderingAttribute name="turntableCasing">
+		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
+		<case attrColorValue="#808080"/>
+	</renderingAttribute>
+
+
+	<!-- line styling -->
+
+<!-- to be edited -->	
+
+	<!-- Railway textcolors -->
+	
+	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
+	<renderingConstant name="railwayTextColorDay" value="#333333"/>
+	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
+	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
+
+	<!-- railway colors -->
+
+	<renderingAttribute name="railwayRailColor2">
+		<case nightMode="true" attrColorValue="#506c73"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+
+	<!-- Zoom levels -->
+
+
+	<!-- Line styling -->
+	<line>
+		<switch>
+			<case minzoom="11" tag="railway" value="subway">
+				<apply color="#999999" strokeWidth="1:1"/>
+				<apply_if subwayMode="false">
+					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
+					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+				</apply_if>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
+				<apply color="#999999" strokeWidth="1:1"/>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="light_rail" additional="route=subway">
+				<apply color="#999999" strokeWidth="1:1"/>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
+				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
+					<apply_if nightMode="true" color_2="#333333"/>
+				</apply>
+			</case>
+			<!-- <apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColor" cap="ROUND"/> color for subway lines without tag="colo(u)r" -->
+			<!-- <apply_if subwayMode="true" pathEffect=""> -->
+				<!-- <case additional="color_red" color="$subwayRedColor"/> -->
+				<!-- <case additional="color_brown" color="$subwayBrownColor"/> -->
+				<!-- <case additional="color_orange" color="$subwayOrangeColor"/> -->
+				<!-- <case additional="color_darkyellow" color="$subwayDarkyellowColor"/> -->
+				<!-- <case additional="color_yellow" color="$subwayYellowColor" color__1="#b0b200"/> -->
+				<!-- <case additional="color_lightgreen" color="$subwayLightgreenColor"/> -->
+				<!-- <case additional="color_green" color="$subwayGreenColor"/> -->
+				<!-- <case additional="color_lightblue" color="$subwayLightblueColor"/> -->
+				<!-- <case additional="color_blue" color="$subwayBlueColor"/> -->
+				<!-- <case additional="color_purple" color="$subwayPurpleColor"/> -->
+				<!-- <case additional="color_gray" color="$subwayGrayColor"/> -->
+				<!-- <case additional="color_black" color="$subwayBlackColor"> -->
+					<!-- <case nightMode="true" color__1="#cccccc"/> -->
+				<!-- </case> -->
+				<!-- <apply_if minzoom="11" maxzoom="11" strokeWidth="1.5:1.5" strokeWidth__1="2:2" strokeWidth_2="0.7" shadowColor="$subwayLineShadowColor" shadowRadius="4"/> -->
+				<!-- <apply_if minzoom="12" maxzoom="12" strokeWidth="2:2" strokeWidth__1="2.5:2.5" strokeWidth_2="0.8" shadowColor="$subwayLineShadowColor" shadowRadius="5"/> -->
+				<!-- <apply_if minzoom="13" maxzoom="13" strokeWidth="2.8:2.8" strokeWidth__1="3.2:3.2" strokeWidth_2="0.9" shadowColor="$subwayLineShadowColor" shadowRadius="6.5"/> -->
+				<!-- <apply_if minzoom="14" maxzoom="14" strokeWidth="2.5:2.5" strokeWidth__1="3.5:3.5" strokeWidth_2="0.9" shadowColor="$subwayLineShadowColor" shadowRadius="7.5"/> -->
+				<!-- <apply_if minzoom="15" maxzoom="16" strokeWidth="2.5:2.5" strokeWidth__1="3.5:3.5" strokeWidth_2="1" shadowColor="$subwayLineShadowColor" shadowRadius="7.5"/> -->
+				<!-- <apply_if minzoom="17" maxzoom="18" strokeWidth="3:3" strokeWidth__1="4:4" strokeWidth_2="1.2:1.2"/> -->
+				<!-- <apply_if minzoom="19" strokeWidth="3.5:3.5" strokeWidth__1="5:5" strokeWidth_2="2:2"/> -->
+			<!-- </apply_if> -->
+		</switch>
+		<!--
+		<case minzoom="7" tag="railway" value="rail">
+			<case additional="tunnel=yes">
+				<apply_if minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
+				<apply_if minzoom="14" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			</case>
+			<case additional="bridge=yes" minzoom="14" color="#000000" strokeWidth="5" color_2="$railwayRailColor2" strokeWidth_2="4" color_3="#999999" strokeWidth_3="0.8" pathEffect_3="12_8_1_0"/>
+			<case maxzoom="7" strokeWidth="0.6"/>
+			<case maxzoom="8" strokeWidth="0.9"/>
+			<case maxzoom="12" strokeWidth="1:1"/>
+			<case maxzoom="13" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1" pathEffect_2="8_12"/>
+			<case minzoom="14" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
+			<apply color="$railwayRailColor"/>
+			<apply_if additional="service=spur" color="#b0b0b0" color_2="#eeeeee">
+				<apply_if nightMode="true" color="#666666" color_2="#999999"/>
+			</apply_if>
+		</case>-->
+		<!-- working tags: railway, tunnel, bridge, service -->
+		<!-- non-working tags: usage, highspeed -->
+		<!-- layer railway_low -->
+		<case minzoom="2" maxzoom="7" tag="railway" value="rail">
+			<!-- without effect as "usage" and "highspeed" tag is missing in the input -->
+			<apply strokeWidth="1.5" color="$railwayRailColor"/>
+			<case additional="usage=main">
+				<case additional="highspeed=yes">
+					<apply color="$highSpeedColor"/>
+				</case>
+				<apply color="$railwayRailColor"/>
+			</case>
+			<case additional="usage=branch">
+				<apply color="$branchColor"/>
+			</case>
+			<!-- instead, only this will really work -->
+			<case additional="service="/> <!-- exclude service tracks from rendering in this level-->
+			<case minzoom="6">
+				<apply strokeWidth="2.5"/>
+			</case>
+		</case>
+		<!-- layer railway_med -->
+		<!-- only needed separate from layer low to introduce branch display -->
+		<case minzoom="8" maxzoom="8" tag="railway" value="rail">
+			<!-- without effect as "usage" and "highspeed" tag is missing in the input -->
+			<case additional="usage=main">
+				<case additional="highspeed=yes">
+					<apply color="$highSpeedColor"/>
+				</case>
+				<apply color="$railwayRailColor"/>
+			</case>
+			<case additional="usage=branch">
+				<apply color="$branchColor"/>
+			</case>
+			<!-- instead, only this will really work -->
+			<case additional="service="/> <!-- exclude service tracks from rendering in this level-->
+			<apply color="$railwayRailColor" strokeWidth="2.5"/>
+		</case>
+		<!-- layer railway_fill -->
+		<switch minzoom="9">
+			<case tag="railway" value="rail">
+				<!-- without effect as "usage" and "highspeed" tag is missing in the input -->
+				<case additional="usage=main">
+					<case additional="highspeed=yes">
+						<apply color="$highSpeedColor" strokeWidth="3.5" cap="ROUND"/>
+					</case>
+					<apply color="$railwayRailColor" strokeWidth="3.5" cap="ROUND"/>
+				</case>
+				<case additional="usage=branch">
+					<apply color="$branchColor" strokeWidth="3.5" cap="ROUND"/>
+				</case>
+				<!-- instead, only this will really work -->
+				<case additional="service=">
+					<apply color="$railwayRailColor" cap="ROUND"/>	<!-- refine later strokeWidth and color-->
+					<case minzoom="11">
+						<apply strokeWidth="2"/>
+						<case additional="service=spur">
+							<apply strokeWidth="1.5"/>
+						</case>
+					</case>
+					<case minzoom="12" additional="service=yard">
+						<apply strokeWidth="1.5" cap="ROUND"/>
+					</case>
+				</case>
+				<apply color="$railwayRailColor" strokeWidth="3.5" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="narrow_gauge">
+				<apply strokeWidth="3" color="$narrowGaugeColor" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="disused">
+				<apply strokeWidth="3" color="$disusedColor" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="abandoned">
+				<apply strokeWidth="3" color="$abandonedColor" pathEffect="5_5" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="razed">
+				<apply strokeWidth="3" color="$razedColor" pathEffect="3_7" cap="ROUND"/>
+			</case>
+
+			<case tag="railway" value="construction">
+				<apply strokeWidth="3" color="$noUsageColor" pathEffect="9_9" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="proposed">
+				<apply strokeWidth="3" color="$noUsageColor" pathEffect="2_8" cap="ROUND"/>
+			</case>
+			<!-- without effect, as tag is missing-->
+			<case tag="railway:preserved" value="yes">
+				<apply strokeWidth="3" color="$preservedColor" pathEffect="3_10" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="preserved">
+				<apply strokeWidth="3" color="$preservedColor" pathEffect="3_10" cap="ROUND"/>
+			</case>
+
+			<case tag="railway" value="subway">
+				<apply strokeWidth="3" color="$subwayColor" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="tram">
+				<apply strokeWidth="3" color="$tramColor" cap="ROUND"/>
+			</case>
+			<case tag="railway" value="lightRail">
+				<apply strokeWidth="3" color="$lightRailColor" cap="ROUND"/>
+			</case>
+			<apply />
+		</switch>
+		
+		<switch>
+			<switch minzoom="13">
+				<case minzoom="15" tag="railway" value="tram" color="#444444">
+					<apply_if minzoom="15" strokeWidth="1:1" strokeWidth__1="2:2"/>
+					<apply_if nightMode="true" color="#66ffffff" color__1="#37555c"/>
+				</case>
+				<case tag="railway" value="light_rail" minzoom="13" color="#666666" strokeWidth="1:1"/>
+				<apply_if additional="tunnel=yes" pathEffect="5_3">
+					<apply_if maxzoom="14" strokeWidth="0.6"/>
+					<apply_if minzoom="15" strokeWidth="1:1"/>
+				</apply_if>
+			</switch>
+			<switch>
+				<switch minzoom="14">
+					<case tag="railway" value="abandoned"/>
+					<case tag="railway" value="disused"/>
+					<apply color="#888888" strokeWidth="1:1" pathEffect="4_2"/>
+				</switch>
+				<case minzoom="15" tag="railway" value="monorail" color="#777777" strokeWidth="1.5:1.5" pathEffect="2_3"/>
+				<case minzoom="13" tag="railway" value="preserved" color="#999999" strokeWidth="1.5:1.5" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_1_8_1"/>
+				<case minzoom="16" tag="railway" value="construction" color="#999999" strokeWidth="1.5:1.5" color_2="#ff6600" strokeWidth_2="1" pathEffect_2="8_12"/>
+				<case minzoom="15" tag="railway" value="funicular" color="#666666" strokeWidth="1:1"/>
+				<apply_if additional="tunnel=yes" color__1="#000000" strokeWidth__1="3.5:3.5" pathEffect__1="8_5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+			</switch>
+			<case minzoom="13" color="#666666" strokeWidth="1:1" tag="railway" value="narrow_gauge">
+				<apply_if additional="tunnel=yes" strokeWidth="3.5:3.5" pathEffect="5_3" color_2="#cccccc" strokeWidth_2="2.5:3"/>
+			</case>
+			<apply_if additional="bridge=yes" minzoom="14" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+		</switch>
+		<case minzoom="16" tag="railway" value="miniature" strokeWidth="1.5:1.5" pathEffect="2_3">
+			<apply color="#4c53eb">
+				<apply_if nightMode="true" color="#999ce4"/>
+			</apply>
+			<apply_if additional="tunnel=yes" color__1="#000000" strokeWidth__1="3.5:3.5" pathEffect__1="8_5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+			<apply_if additional="bridge=yes" minzoom="14" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+			<apply_if nightMode="true" color_0="#000000" color__1="#ffffff"/>
+		</case>
+
+		<switch>
+			<case tag="public_transport" value="platform"/>
+			<case tag="railway" value="halt"/>
+			<apply_if minzoom="16" color="#888888" strokeWidth="2:2" strokeWidth_2="1:1" color_2="#bababa">
+				<apply_if minzoom="18" strokeWidth="3:3" strokeWidth_2="2:2"/>
+				<apply_if additional="disused=yes" color="#aaaaaa" color_2="#bbbbbb">
+					<apply_if nightMode="true" color="#50888888" color_2="#10bababa"/>
+				</apply_if>
+			</apply_if>
+			<apply_if layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3">
+				<apply_if additional="disused=yes" color="#30888888">
+					<apply_if nightMode="true" color_2="#10bababa"/>
+				</apply_if>
+			</apply_if>
+			<apply_if baseAppMode="bicycle">
+				<apply_if layer="-1" color="#25888888" color_2="#25bababa" pathEffect="20_3" pathEffect_2="20_3">
+					<apply_if nightMode="true" color="#10888888" color_2="#10bababa"/>
+					<apply_if additional="disused=yes" color="#07888888"/>
+				</apply_if>
+			</apply_if>
+			<apply_if baseAppMode="car" layer="-1" disable="true"/>
+		</switch>
+		
+	</line>
+	
+	<!-- Point styling -->
+	<!-- icons for Subways in color mode see analysis -->
+	<point>
+		<switch>
+			<switch hideIcons="false">
+				<case minzoom="13" tag="abandoned:railway" value="station">
+					<case maxzoom="15" icon="railway_station_small_disused"/>
+					<case minzoom="16" icon="railway_station_disused" shield="gray_round_shield">
+						<apply_if nightMode="true" shield="gray_round_night_shield"/>
+					</case>
+				</case>
+
+				<case minzoom="15" tag="railway" value="subway_entrance" icon="barrier_entrance_2" iconVisibleSize="23" intersectionSizeFactor="0.7" iconOrder="75">
+					<case additional="subway_region=samara" icon="subway_samara"/>
+					<case additional="subway_region=moscow" icon="subway_moscow"/>
+					<case additional="subway_region=spb" icon="subway_spb"/>
+					<case additional="subway_region=kazan" icon="subway_kazan"/>
+					<case additional="subway_region=nnovgorod" icon="subway_nnovgorod"/>
+					<case additional="subway_region=novosibirsk" icon="subway_novosibirsk"/>
+					<case additional="subway_region=yekaterinburg" icon="subway_yekaterinburg"/>
+					<case additional="subway_region=baku" icon="subway_baku"/>
+					<case additional="subway_region=tbilisi" icon="subway_tbilisi"/>
+					<case additional="subway_region=yerevan" icon="subway_yerevan"/>
+					<case additional="subway_region=tashkent" icon="subway_tashkent"/>
+					<case additional="subway_region=almaty" icon="subway_almaty"/>
+					<case additional="subway_region=minsk" icon="subway_minsk"/>
+					<case additional="subway_region=kyiv" icon="subway_kyiv"/>
+					<case additional="subway_region=kharkiv" icon="subway_kharkiv"/>
+					<case additional="subway_region=germany" icon="subway_germany"/>
+					<case additional="subway_region=wien" icon="subway_wien"/>
+					<case additional="subway_region=budapest" icon="subway_budapest"/>
+					<case additional="subway_region=madrid" icon="subway_madrid"/>
+					<case additional="subway_region=paris" icon="subway_paris"/>
+					<case additional="subway_region=lyon" icon="subway_lyon"/>
+					<case additional="subway_region=london" icon="subway_london"/>
+					<case additional="subway_region=barcelona" icon="subway_barcelona"/>
+					<case additional="subway_region=stockholm" icon="subway_stockholm"/>
+					<case additional="subway_region=oslo" icon="subway_stockholm"/>
+					<case additional="subway_region=praha" icon="subway_praha"/>
+					<case additional="subway_region=athens" icon="subway_athens"/>
+					<case additional="subway_region=italy" icon="subway_italy"/>
+					<case additional="subway_region=italy_catania" icon="subway_italy_catania"/>
+					<!-- <case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
+					<case additional="subway_region=rotterdam" icon="subway_rotterdam"/>
+					<case additional="subway_region=amsterdam" icon="subway_amsterdam"/>
+					<case additional="subway_region=brussels" icon="subway_brussels"/>
+					<case additional="subway_region=bucharest" icon="subway_bucharest"/>
+					<case additional="subway_region=osaka" icon="subway_osaka"/>
+					<case additional="subway_region=tokyo" icon="subway_tokyo"/>
+					<case additional="subway_region=nagoya" icon="subway_nagoya"/>
+					<case additional="subway_region=singapore" icon="subway_singapore"/>
+					<case additional="subway_region=manila" icon="subway_manila"/>
+					<case additional="subway_region=kolkata" icon="subway_kolkata"/>
+					<case additional="subway_region=delhi" icon="subway_delhi"/>
+					<!-- <case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
+					<case additional="subway_region=tehran" icon="subway_tehran"/>
+					<case additional="subway_region=chicago" icon="subway_chicago"/>
+					<case additional="subway_region=newyork" icon="subway_newyork"/>
+					<case additional="subway_region=boston" icon="subway_boston"/>
+					<case additional="subway_region=washington" icon="subway_washington"/>
+					<case additional="subway_region=losangeles" icon="subway_losangeles"/>
+					<case additional="subway_region=montreal" icon="subway_montreal"/>
+					<case additional="subway_region=toronto" icon="subway_toronto"/>
+					<case additional="subway_region=cairo" icon="subway_cairo"/>
+					<case additional="subway_region=riodejaneiro" icon="subway_riodejaneiro"/>
+					<case additional="subway_region=buenosaires" icon="subway_buenosaires"/>
+					<case additional="subway_region=sofia" icon="subway_sofia"/>
+					<case additional="subway_region=taipei" icon="subway_taipei"/>
+					<case additional="subway_region=santiago" icon="subway_santiago"/>
+					<case additional="subway_region=valparaiso" icon="subway_valparaiso"/>
+					<case additional="subway_region=busan" icon="subway_seoul"/>
+					<case additional="subway_region=seoul" icon="subway_seoul"/>
+					<case additional="subway_region=philadelphia" icon="subway_philadelphia"/>
+					<case additional="subway_region=philadelphia_patco" icon="subway_philadelphia_patco"/>
+					<case additional="subway_region=istanbul" icon="subway_istanbul"/>
+					<case additional="subway_region=san_francisco" icon="subway_san_francisco"/>
+					<case additional="subway_region=atlanta" icon="subway_atlanta"/>
+					<case additional="subway_region=baltimore" icon="subway_baltimore"/>
+					<case additional="subway_region=cleveland" icon="subway_cleveland"/>
+					<case additional="subway_region=miami" icon="subway_miami"/>
+					<case additional="subway_region=newyork_path" icon="subway_newyork_path"/>
+					<case additional="subway_region=puerto_rico" icon="subway_puerto_rico"/>
+					<case additional="subway_region=mexico" icon="subway_mexico"/>
+					<case additional="subway_region=sanpaulo" icon="subway_sanpaulo"/>
+					<case additional="subway_region=caracas" icon="subway_caracas"/>
+					<case additional="subway_region=yokohama" icon="subway_yokohama"/>
+					<case additional="subway_region=yokohama_minatomirai" icon="subway_yokohama_minatomirai"/>
+					<case additional="subway_region=sapporo" icon="subway_sapporo"/>
+					<case additional="subway_region=medellin" icon="subway_medellin"/>
+					<case additional="subway_region=monterrey" icon="subway_monterrey"/>
+					<case additional="subway_region=warsaw" icon="subway_warsaw"/>
+					<case additional="subway_region=lisbon" icon="subway_lisbon"/>
+					<case additional="subway_region=fukuoka" icon="subway_fukuoka"/>
+					<case additional="subway_region=suzhou" icon="subway_suzhou"/>
+					<case additional="subway_region=shanghai" icon="subway_shanghai"/>
+					<case additional="subway_region=guangzhou" icon="subway_guangzhou"/>
+					<case shield="blue_square_shield" intersectionSizeFactor="1">
+						<apply_if nightMode="true" shield="blue_square_night_shield"/>
+					</case>
+				</case>
+			</switch>
+			<!-- Public transport mode icons -->
+			<switch>
+					<apply_if minzoom="15" maxzoom="16" iconVisibleSize="9" iconOrder="73">
+					<switch hideIcons="false">
+						<switch>
+							<case additional="train=yes"/>
+							<case additional="light_rail=yes"/>
+							<case additional="monorail=yes"/>
+							<apply icon="railway_station_small"/>
+						</switch>
+						<case icon="highway_bus_stop_small"/>
+					</switch>
+					<case publicTransportMode="true">
+						<apply icon="highway_bus_stop_round_big" iconVisibleSize="7" iconOrder="55">
+							<apply_if nightMode="true" icon="highway_bus_stop_round_big_night"/>
+						</apply>
+					</case>
+				</apply_if>
+				<apply_if hideIcons="false" minzoom="17">
+					<switch>
+						<switch>
+							<case additional="train=yes"/>
+							<case additional="light_rail=yes"/>
+							<case additional="monorail=yes"/>
+							<apply icon="railway_station"/>
+						</switch>
+						<case icon="highway_bus_stop"/>
+						<apply shield="blue_square_shield" iconOrder="82" intersectionMargin="3"/>
+						<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
+						<apply_if nightMode="true" shield="blue_square_night_shield">
+							<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_night_shield" intersectionSizeFactor="0.9"/>
+						</apply_if>
+					</switch>
+				</apply_if>
+			</switch>
+			<switch tramTrainRoutes="true" iconOrder="55">
+				<case tag="railway" value="tram_stop"/>
+				<case tag="public_transport" value="stop_position" additional="tram=yes"/>
+				<case tag="public_transport" value="platform" additional="tram=yes"/>
+				<apply_if minzoom="14" maxzoom="14" icon="railway_tram_stop_round_small">
+					<apply_if nightMode="true" icon="railway_tram_stop_round_small_night"/>
+				</apply_if>
+				<apply_if minzoom="15" maxzoom="16" icon="railway_tram_stop_round_big">
+					<apply_if nightMode="true" icon="railway_tram_stop_round_big_night"/>
+				</apply_if>
+				<apply_if minzoom="17" icon="railway_tram_stop" shield="blue_round_shield" iconVisibleSize="17">
+					<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_shield"/>
+					<apply_if nightMode="true" shield="blue_square_night_shield">
+						<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_night_shield"/>
+					</apply_if>
+				</apply_if>
+			</switch>
+
+			<switch hideIcons="false" iconOrder="83">
+				<case minzoom="13" tag="railway" value="halt">
+					<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10"/>
+					<case minzoom="15" maxzoom="15" icon="halt_small"/>
+					<case minzoom="16" icon="halt" shield="blue_square_small_shield">
+						<apply_if nightMode="true" shield="blue_square_night_small_shield"/>
+					</case>
+				</case>
+				<case minzoom="15" tag="railway" value="tram_stop">
+					<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10"/>
+					<case minzoom="17" icon="railway_tram_stop" shield="blue_round_shield">
+						<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_shield"/>
+						<apply_if nightMode="true" shield="blue_square_night_shield">
+							<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_night_shield"/>
+						</apply_if>
+					</case>
+				</case>
+				<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
+					<apply_if streetLighting="true">
+						<case additional="lit_additional=yes">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
+							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+						</case>
+						<case additional="lit_additional=no">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
+							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+						</case>
+					</apply_if>
+				</case>
+			</switch>
+			<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
+				<apply_if nightMode="true" shield="blue_round_night_shield"/>
+			</case>
+		</switch>
+	</point>
+	
+	<!-- Polygons -->
+	<!-- see Analysis -->
+	
+	<!-- Text Rendering -->
+	<!-- see Analysis -->
+	
+	<!-- Draw order -->
+	<order>
+		<switch>
+			<switch area="false" point="true" objectType="1" order="128">
+				<case tag="railway" value="subway_entrance"/>
+				<switch>
+					<case tag="railway" value="station">
+						<apply_if maxzoom="12">
+							<switch>
+								<case additional="disused=yes"/>
+								<apply order="-1"/>
+							</switch>
+						</apply_if>
+						<apply_if maxzoom="12" baseAppMode="pedestrian" moreDetailed="false" order="-1"/>
+					</case>
+					<case tag="railway" value="yard"/>
+					<case maxzoom="12" tag="abandoned:railway" value="station" order="-1"/>
+					<case tag="railway" value="buffer_stop"/>
+					<case tag="railway" value="halt">
+						<apply_if maxzoom="12" baseAppMode="pedestrian" moreDetailed="false" order="-1"/>
+					</case>
+					<case tag="railway" value=""/>
+				</switch>
+			</switch>
+			<switch area="false" objectType="2" order="80">
+				<switch order="86">
+						<case tag="railway" value="rail" additional="network=rer"/>
+						<!--<case tag="railway" value="rail" additional="route=subway"/>-->
+						<case tag="railway" value="subway" additional="tunnel=yes">
+							<apply_if subwayMode="false">
+								<switch>
+									<case moreDetailed="true" maxzoom="17"/>
+									<case maxzoom="18"/>
+									<apply order="-1"/>
+								</switch>
+							</apply_if>
+							<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="86"/>
+							<apply_if subwayMode="true" order="177"/>
+						</case>
+						<case tag="railway" value="subway">
+							<apply_if subwayMode="false">
+								<switch>
+									<case moreDetailed="true" maxzoom="15"/>
+									<case maxzoom="16"/>
+									<apply order="-1"/>
+								</switch>
+							</apply_if>
+							<apply_if subwayMode="false" moreDetailed="true" minzoom="16" order="86"/>
+							<apply_if subwayMode="true" order="177"/>
+						</case>
+						<switch>
+							<case tag="railway" value="rail">
+								<apply_if maxzoom="14" order="77"/>
+								<apply_if additional="service=spur">
+									<case maxzoom="12" order="-1"/>
+									<case minzoom="13" order="67"/>
+								</apply_if>
+							</case>
+	<!--						<case tag="railway" value="tram">
+								<apply_if minzoom="18" order="178"/>
+							</case>-->
+							<case tag="railway" value="light_rail"/>
+							<case tag="railway" value="monorail"/>
+							<case tag="railway" value="funicular"/>
+							<apply_if subwayMode="false" layer="-1" order="20"/>
+							<apply_if subwayMode="false" additional="layer=-2" order="20"/>
+							<apply_if layer="1" order="108"/>
+							<apply_if additional="layer=2" order="138"/>
+							<apply_if additional="layer=3" order="167"/>
+						</switch>
+						<switch>
+							<case tag="railway" value="construction"/>
+							<case tag="railway" value="preserved"/>
+							<apply_if moreDetailed="false" maxzoom="18" order="-1"/>
+						</switch>
+						<apply_if subwayMode="false" baseAppMode="car" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
+						<apply_if subwayMode="false" baseAppMode="bicycle" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
+						<apply_if subwayMode="false" baseAppMode="car" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
+						<apply_if subwayMode="false" baseAppMode="bicycle" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
+					</switch>
+					<case tag="railway" value="" order="86">
+						<apply_if layer="1" order="108"/>
+						<apply_if additional="layer=2" order="138"/>
+						<apply_if additional="layer=3" order="167"/>
+						<apply_if layer="-1" order="44"/>
+						<apply_if additional="layer=-2" order="19"/>
+					</case>
+					<case tag="route_bus" value="" order="189"/>
+					<case tag="route_share_taxi" value="" order="188"/>
+					<case tag="route_monorail" value="" order="180"/>
+					<case tag="route_funicular" value="" order="181"/>
+					<case tag="route_light_rail" value="" order="182"/>
+					<case tag="route_train" value="" order="183"/>
+					<case tag="route_tram" value="" order="184"/>
+					<case tag="route_trolleybus" value="" order="185"/>
+					<case tag="route_bicycle" value="" order="186"/>
+					<case tag="route_mtb" value="" order="187"/>
+
+					<case tag="railway" value="station"/>
+				</switch>
+		</switch>
+	</order>
+	
+
+</renderingStyle>

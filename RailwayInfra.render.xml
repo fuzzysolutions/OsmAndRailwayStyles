@@ -150,8 +150,6 @@
 
 	<!-- Line styling -->
 	<line>
-		<!-- working tags: railway, tunnel, bridge, service -->
-		<!-- non-working tags: usage, highspeed -->
 		<!-- layer railway_low -->
 		<case minzoom="2" maxzoom="7" tag="railway" value="rail">
 			<!-- without effect as "usage" and "highspeed" tag  is missing in the input -->

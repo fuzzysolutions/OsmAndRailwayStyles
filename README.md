@@ -6,8 +6,10 @@ Somewhere at the very beginning. I focused on the display of the tracks in the f
 Feel free to contribute. Note that I copied some snippets of interest from the OsmAnd default style in order to work on them later.
 
 # Setup
-* Download the file and place it in "rendering" folder of the OsmAnd installation directory on your phone: ~\Android\data\net.osmand\files\rendering
-* Restart OsmAnd
+* Download the file and place it in "rendering" folder of the OsmAnd installation directory on your phone:
+ ~\Android\data\net.osmand\files\rendering
+ or ~\Android\data\net.osmand.plus\files\rendering
+* Restart OsmAnd (Close it in the Task Switcher)
 * Open OsmAnd menu, choose "Configure Map" -> "Map Style" and select "RailwayInfra"
 
 # Visible Features

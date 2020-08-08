@@ -1,4 +1,4 @@
-<renderingStyle name="RailwayInfra" depends="default" defaultColor="#f1eae4" version="1.0">
+<renderingStyle name="RailwayInfra" depends="mapnik" defaultColor="#f1eae4" version="1.0">
 <!-- OpenRailwayMap-inspired Rendering Style for OsmAnd by dvärgsignal -->	
 <renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
@@ -128,21 +128,7 @@
 
 
 	<!-- line styling -->
-
-<!-- to be edited -->	
-
-	<!-- Railway textcolors -->
-	
-	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
-	<renderingConstant name="railwayTextColorDay" value="#333333"/>
-	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
-	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
-
-	<!-- Zoom levels -->
-
-
-	<!-- Line styling -->
-	<line>
+		<line>
 		<!-- Low Levels -->
 		<case minzoom="2" maxzoom="8" tag="railway" value="rail" color="$railwayRailColor" strokeWidth="3" cap="ROUND"
 			  color_0="$railwayCasingColor" strokeWidth_0="5">
@@ -161,6 +147,8 @@
 			<!-- Tracks of different Railway Types -->
 			<case tag="railway" value="rail" color="$railwayRailColor" strokeWidth="3.5" cap="ROUND"
 				  shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
+						  strokeWidth_0="7.5" shadowRadius="4" shadowColor="$bridgeCasingColor" cap="BUTT"/>
 				<!-- without effect as "usage" and "highspeed" tag is missing in the input -->
 				<case additional="usage=main">
 					<case additional="highspeed=yes" color="$highSpeedColor"/>
@@ -169,84 +157,146 @@
 				<!-- instead, only this will really work -->
 				<case additional="service=">
 					<case minzoom="11" strokeWidth="2" >
+						<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="4" strokeWidth__1="6"/>
 						<case additional="service=siding" color="$sidingColor"/>
 						<case additional="service=crossover" color="$sidingColor"/>
-						<case additional="service=spur" color="$spurColor" strokeWidth="1.5"/>
+						<case additional="service=spur" color="$spurColor" strokeWidth="1.5">
+							<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
+									  color__1="$bridgeCasingColor"
+									  strokeWidth_0="4.5" strokeWidth__1="5.5"/>
+						</case>
 					</case>
-					<case minzoom="12" additional="service=yard" color="$yardColor" strokeWidth="1.5"/>
+					<case minzoom="12" additional="service=yard" color="$yardColor" strokeWidth="1.5">
+						<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+								  strokeWidth_0="3.5" strokeWidth__1="5.5"/>
+					</case>
 				</case>
 			</case>
 			<case tag="railway" value="narrow_gauge"
-				  shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
+				  shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor"
+				  strokeWidth="3" color="$narrowGaugeColor" cap="ROUND">
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 				<case additional="service=">
 					<case minzoom="11">
-						<case additional="service=siding" color="$narrowGaugeColor" strokeWidth="2" cap="ROUND"/>
-						<case additional="service=crossover" color="$narrowGaugeColor" strokeWidth="2" cap="ROUND"/>
-						<case additional="service=spur" color="$narrowGaugeColor" strokeWidth="1.5" cap="ROUND"/>
+						<case additional="service=siding" color="$narrowGaugeColor" strokeWidth="2" cap="ROUND">
+							<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
+									  color__1="$bridgeCasingColor" strokeWidth_0="4" strokeWidth__1="6"/>
+						</case>
+						<case additional="service=crossover" color="$narrowGaugeColor" strokeWidth="2" cap="ROUND">
+							<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
+									  color__1="$bridgeCasingColor" strokeWidth_0="4" strokeWidth__1="6"/>
+						</case>
+						<case additional="service=spur" color="$narrowGaugeColor" strokeWidth="1.5" cap="ROUND">
+							<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
+									  color__1="$bridgeCasingColor" strokeWidth_0="3.5" strokeWidth__1="5.5"/>
+						</case>
 					</case>
 					<!-- without effect -->
-					<case minzoom="12" additional="service=yard" color="$yardColor" strokeWidth="1.5" cap="ROUND"/>
+					<case minzoom="12" additional="service=yard" color="$yardColor" strokeWidth="1.5" cap="ROUND">
+						<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+								  strokeWidth_0="3.5" strokeWidth__1="5.5"/>
+					</case>
 				</case>
-				<case strokeWidth="3" color="$narrowGaugeColor" cap="ROUND"/>
 			</case>
 			<case tag="railway" value="disused" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$disusedColor" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<case tag="railway" value="abandoned" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$abandonedColor" pathEffect="5_5" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<case tag="railway" value="razed" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$razedColor" pathEffect="3_7" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 
 			<case tag="railway" value="construction" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$noUsageColor" pathEffect="9_9" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<case tag="railway" value="proposed" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$noUsageColor" pathEffect="2_8" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<!-- without effect, as tag is missing-->
 			<case tag="railway:preserved" value="yes"
 				  shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="2" color="$preservedColor" cap="ROUND"/>
 				<apply strokeWidth_2="5" color_2="$preservedColor" pathEffect_2="3_10"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="7" strokeWidth__1="9"/>
 			</case>
 			<!-- with effect, but undesired by tagging scheme -->
 			<case tag="railway" value="preserved">
 				<apply strokeWidth="2" color="$preservedColor" cap="ROUND"/>
 				<apply shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor"/>
 				<apply strokeWidth_2="5" color_2="$preservedColor" pathEffect_2="3_10"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="7" strokeWidth__1="9"/>
 			</case>
 
 			<case tag="railway" value="subway" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$subwayColor" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<case tag="railway" value="tram" shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$tramColor" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<case tag="railway" value="light_rail"
 				  shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 				<apply strokeWidth="3" color="$lightRailColor" cap="ROUND"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="5" strokeWidth__1="7"/>
 			</case>
 			<!-- not part of ORM, but interesting -->
 			<case minzoom="15" tag="railway" value="funicular" color="$funicularColor" strokeWidth="2" cap="ROUND"
-			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor"/>
+			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
+					<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="4" strokeWidth__1="6"/>
+			</case>
 			<case minzoom="15" tag="railway" value="monorail" color="$monoRailColor" strokeWidth="2" cap="ROUND"
-			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor"/>
+			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
+					<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="4" strokeWidth__1="6"/>
+			</case>
 			<case minzoom="16" tag="railway" value="miniature">
 				<apply color="$miniatureRailColor" strokeWidth="1.5" cap="ROUND"/>
 				<apply shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor"/>
 				<apply strokeWidth_2="4" color_2="$miniatureRailColor" pathEffect_2="3_10"/>
+				<apply_if additional="bridge=yes" color_0="$railwayCasingColor" color__1="$bridgeCasingColor"
+						  strokeWidth_0="6" strokeWidth__1="8"/>
 			</case>
+
 			<!-- railway and public transport stops are equalized in the data. no matter, interesting -->
 			<case tag="public_transport" value="platform" color="$platformColor" strokeWidth="5" />
 		</switch>
-		
-
-
-
-		
 	</line>
+
+<!-- to be edited -->	
+
+	<!-- Railway textcolors -->
+	
+	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
+	<renderingConstant name="railwayTextColorDay" value="#333333"/>
+	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
+	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
+
+	<!-- Zoom levels -->
+
+
+	<!-- Line styling -->
+
 	
 	<!-- Point styling -->
 	<!-- icons for Subways in color mode see analysis -->
@@ -469,48 +519,36 @@
 				</switch>
 			</switch>
 			<switch area="false" objectType="2" order="80">
+				<!-- Lines -->
+				<!-- rather small adaptions:
+				Subways, Trams and proposed, construction, preserved tracks ranked higher -->
+				<!-- lift railway network on higher levels top of all other data -->
+				<case maxzoom="14" tag="railway" value="rail" order="200"/>
+				<case maxzoom="14" tag="railway" value="narrow_gauge" order="199"/>
+				<case maxzoom="14" tag="railway" value="disused" order="190"/>
+				<case maxzoom="14" tag="railway" value="abandoned" order="181"/>
+				<case maxzoom="14" tag="railway" value="razed" order="180"/>
+				<case maxzoom="14" tag="railway" value="proposed" order="191"/>
+				<case maxzoom="14" tag="railway" value="construction" order="192"/>
+				<case maxzoom="14" tag="railway" value="tram" order="193"/>
+				<case maxzoom="14" tag="railway" value="subway" order="194"/>
+				<case maxzoom="14" tag="railway" value="light_rail" order="195"/>
+				<case maxzoom="14" tag="railway" value="funicular" order="188"/>
+				<case maxzoom="14" tag="railway" value="miniature" order="187"/>
+				<case maxzoom="14" tag="railway" value="monorail" order="189"/>
+				<case maxzoom="14" tag="railway" value="preserved" order="196"/>
+
+				<!-- slight overrides in the regular ordering below level 14 -->
 				<switch order="86">
-						<case tag="railway" value="rail" additional="network=rer"/>
-						<!--<case tag="railway" value="rail" additional="route=subway"/>-->
-						<case tag="railway" value="subway" additional="tunnel=yes">
-							<!--
-							<apply_if subwayMode="false">
-								<switch>
-									<case moreDetailed="true" maxzoom="17"/>
-									<case maxzoom="18"/>
-									<apply order="-1"/>
-								</switch>
-							</apply_if>
-							<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="86"/>
-							<apply_if subwayMode="true" order="177"/>-->
-						</case>
-						<case tag="railway" value="subway">
-							<!--<apply_if subwayMode="false">
-								<switch>
-									<case moreDetailed="true" maxzoom="15"/>
-									<case maxzoom="16"/>
-									<apply order="-1"/>
-								</switch>
-							</apply_if>
-							<apply_if subwayMode="false" moreDetailed="true" minzoom="16" order="86"/>
-							<apply_if subwayMode="true" order="177"/>-->
-						</case>
+						<case tag="railway" value="subway" additional="tunnel=yes"/>
 						<switch>
 							<case tag="railway" value="rail">
-								<apply_if maxzoom="14" order="77" />
-								<apply_if additional="service=spur">
-									<case maxzoom="12" order="-1"/>
-									<case minzoom="13" order="67"/>
-								</apply_if>
 							</case>
-	<!--						<case tag="railway" value="tram">
-								<apply_if minzoom="18" order="178"/>
-							</case>-->
 							<case tag="railway" value="light_rail"/>
 							<case tag="railway" value="monorail"/>
 							<case tag="railway" value="funicular"/>
 							<apply_if subwayMode="false" layer="-1" order="20"/>
-							<apply_if subwayMode="false" additional="layer=-2" order="20"/>
+							<apply_if subwayMode="false" additional="layer=-2" order="19"/>
 							<apply_if layer="1" order="108"/>
 							<apply_if additional="layer=2" order="138"/>
 							<apply_if additional="layer=3" order="167"/>
@@ -518,12 +556,7 @@
 						<switch>
 							<case tag="railway" value="construction"/>
 							<case tag="railway" value="preserved"/>
-							<!--<apply_if moreDetailed="false" maxzoom="18" order="-1"/>-->
 						</switch>
-						<apply_if subwayMode="false" baseAppMode="car" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
-						<apply_if subwayMode="false" baseAppMode="bicycle" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
-						<apply_if subwayMode="false" baseAppMode="car" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
-						<apply_if subwayMode="false" baseAppMode="bicycle" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
 					</switch>
 					<case tag="railway" value="" order="86">
 						<apply_if layer="1" order="108"/>
@@ -532,17 +565,6 @@
 						<apply_if layer="-1" order="44"/>
 						<apply_if additional="layer=-2" order="19"/>
 					</case>
-					<case tag="route_bus" value="" order="189"/>
-					<case tag="route_share_taxi" value="" order="188"/>
-					<case tag="route_monorail" value="" order="180"/>
-					<case tag="route_funicular" value="" order="181"/>
-					<case tag="route_light_rail" value="" order="182"/>
-					<case tag="route_train" value="" order="183"/>
-					<case tag="route_tram" value="" order="184"/>
-					<case tag="route_trolleybus" value="" order="185"/>
-					<case tag="route_bicycle" value="" order="186"/>
-					<case tag="route_mtb" value="" order="187"/>
-
 					<case tag="railway" value="station"/>
 				</switch>
 		</switch>

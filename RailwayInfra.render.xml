@@ -27,8 +27,6 @@
 		<!-- <case moreDetailed="true" attrColorValue="#e0ddda"/> -->
 		<case attrColorValue="e2e2e2"/>	
 	</renderingAttribute>
-	
-	<!-- Other colors, not in use yet -->
 	<renderingAttribute name="highSpeedColor">
 		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
 		<apply_if additional="tunnel=yes" attrColorValue="#FF9B97" />
@@ -144,7 +142,14 @@
 		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
 		<case attrColorValue="#737373"/>
 	</renderingAttribute>
-
+	<!--- text colors -->
+	<renderingConstant name="textColor" Value="#585858"/>
+	<renderingConstant name="textHaloColor" Value="#ffffff"/>
+	<renderingConstant name="textStationColor" Value="#0000ff"/>
+	<renderingConstant name="textYardColor" Value="#87491D"/>
+	<renderingConstant name="textYardHaloColor" Value="#F1F1F1"/>
+	<renderingConstant name="textMinorSiteColor" Value="#616161"/>
+	<renderingConstant name="textTramStopColor" Value="#D877B8"/>
 
 	<!-- line styling -->
 		<line>
@@ -305,10 +310,9 @@
 
 	<!-- Railway textcolors -->
 	
-	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
-	<renderingConstant name="railwayTextColorDay" value="#333333"/>
-	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
-	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
+	<renderingConstant name="railwayPOITextColorDay" value="$textStationColor"/>
+	<renderingConstant name="railwayTextColorDay" value="$textColor"/>
+	<renderingConstant name="railwayTextHaloColorDay" value="$textHaloColor"/>
 
 	<!-- Zoom levels -->
 
@@ -558,7 +562,7 @@
 
 				<!-- slight overrides in the regular ordering below level 14 -->
 				<switch order="86">
-						<case tag="railway" value="subway" additional="tunnel=yes"/>
+						<case tag="railway" value="subway"/>
 						<switch>
 							<case tag="railway" value="rail">
 							</case>

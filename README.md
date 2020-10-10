@@ -1,6 +1,8 @@
 # OsmAndRailwayStyles
 Railway-focused offline map styles for the OsmAnd App (https://osmand.net/) adapting the colour scheme of OpenRailwayMap (https://www.openrailwaymap.org/).
 
+<img src="https://github.com/fuzzysolutions/OsmAndRailwayStyles/blob/master/Screenshots/praha.png" alt="Screenshot of v1.0" width="300"/>
+
 # Status of Development
 I focused on the display of the tracks, which is now available in the v1.0 release. I will later add nodes and text.
 Feel free to contribute. Note that I copied some snippets of interest from the OsmAnd default style in order to work on them later.

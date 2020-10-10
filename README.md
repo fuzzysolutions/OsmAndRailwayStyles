@@ -2,7 +2,7 @@
 Railway-focused offline map styles for the OsmAnd App (https://osmand.net/) adapting the colour scheme of OpenRailwayMap (https://www.openrailwaymap.org/).
 
 # Status of Development
-Somewhere at the very beginning. I focused on the display of the tracks in the first place. I will later add nodes and text.
+I focused on the display of the tracks, which is now available in the v1.0 release. I will later add nodes and text.
 Feel free to contribute. Note that I copied some snippets of interest from the OsmAnd default style in order to work on them later.
 
 # Setup

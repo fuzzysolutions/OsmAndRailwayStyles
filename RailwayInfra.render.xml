@@ -143,14 +143,7 @@
 		<case attrColorValue="#737373"/>
 	</renderingAttribute>
 	<!--- text colors -->
-	<renderingConstant name="textColor" value="#585858"/>
-	<renderingConstant name="textHaloColor" value="#ffffff"/>
-	<renderingConstant name="textHaloRadius" value="1"/>
-	<renderingConstant name="textStationColor" value="#0000ff"/>
-	<renderingConstant name="textYardColor" value="#87491D"/>
-	<renderingConstant name="textYardHaloColor" value="#F1F1F1"/>
-	<renderingConstant name="textMinorSiteColor" value="#616161"/>
-	<renderingConstant name="textTramStopColor" value="#D877B8"/>
+
 
 	<order>
 		<switch>
@@ -235,38 +228,50 @@
 <!-- to be edited -->	
 
 	<!-- Railway textcolors -->
+
+	<renderingConstant name="textStationColor" value="#0000ff"/>
+	<renderingConstant name="textYardColor" value="#87491D"/>
+	<renderingConstant name="textYardHaloColor" value="#F1F1F1"/>
+	<renderingConstant name="textMinorSiteColor" value="#616161"/>
+	<renderingConstant name="textTramStopColor" value="#D877B8"/>
 	
 	<renderingConstant name="railwayPOITextColorDay" value="$textStationColor"/>
-	<renderingConstant name="railwayTextColorDay" value="$textColor"/>
-	<renderingConstant name="railwayTextHaloColorDay" value="$textHaloColor"/>
+	<renderingConstant name="railwayTextColorDay" value="#585858"/>
+	<renderingConstant name="railwayTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="2"/>
-	<renderingConstant name="landuseManmadeTextHaloColor" value="$textHaloColor"/>
-	<renderingConstant name="landuseManmadeTextColor" value="$textColor"/>
+	<renderingConstant name="landuseManmadeTextHaloColor" value="$railwayTextHaloColorDay"/>
+	<renderingConstant name="landuseManmadeTextColor" value="$railwayTextColorDay"/>
+
+	<renderingConstant name="railwayTextSize" value="14"/>
+	<renderingConstant name="railwayTextHaloRadius" value="2"/>
 
 
 	<text>
-		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadius"
-				textHaloColor="$railwayTextHaloColorDay" textSize="13" textOrder="251">
+		<switch minzoom="8" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
+				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="251" textOnPath="true"
+				textBold="true" textMinDistance="30" textWrapWidth="10" >
 			<case tag="railway" value="rail"/>
-			<case minzoom="15" tag="railway" value="tram"/>
-			<case minzoom="16" tag="railway" value="subway"/>
-			<case tag="railway" value="light_rail"/>
-			<case tag="railway" value="abandoned"/>
-			<case tag="railway" value="disused"/>
-			<case tag="railway" value="preserved"/>
-			<case tag="railway" value="narrow_gauge"/>
-			<case tag="railway" value="construction"/>
-			<case tag="railway" value="monorail"/>
-			<case tag="railway" value="funicular"/>
-			<case minzoom="17" tag="railway" value="miniature"/>
-			<apply nameTag="" textOnPath="true">
-				<case maxzoom="14" textSize="12"/>
-				<case maxzoom="15" textSize="13"/>
-				<case maxzoom="16" textSize="14"/>
-				<case maxzoom="17" textSize="16"/>
-				<case minzoom="18" textSize="18"/>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
-			</apply>
+			<switch minzoom="9">
+				<case tag="railway" value="abandoned"/>
+				<case tag="railway" value="disused"/>
+				<case tag="railway" value="construction"/>
+				<case tag="railway" value="proposed"/>
+				<case tag="railway" value="preserved"/>
+			</switch>
+			<switch minzoom="10">
+				<case tag="railway" value="industrial"/>
+				<case tag="railway" value="narrow_gauge"/>
+				<case tag="railway" value="razed"/>
+				<case tag="railway" value="subway"/>
+				<case tag="railway" value="light_rail"/>
+			</switch>
+			<switch minzoom="11">
+				<case tag="railway" value="tram"/>
+				<case tag="railway" value="monorail"/>
+				<case tag="railway" value="funicular"/>
+				<case minzoom="17" tag="railway" value="miniature"/>
+			</switch>
+
 		</switch>
 		<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay"
 				textHaloColor="$landuseManmadeTextHaloColor" textWrapWidth="20" textOrder="144">
@@ -275,7 +280,7 @@
 				<apply textColor="$landuseManmadeTextColor"/>
 			</switch>
 		</switch>
-		<switch textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" nameTag="">
+		<switch textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$railwayTextHaloRadius" textBold="true" nameTag="">
 			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true">
 				<!--<apply_if nightMode="true" textColor="#dddddd" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>-->
 			</case>
@@ -326,7 +331,7 @@
 			<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a">
 				<apply_if nightMode="true" textHaloColor="#22ffffff"/>
 			</case>
-			<apply textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true"/>
+			<apply textWrapWidth="25" textHaloRadius="$railwayTextHaloRadius" textBold="true"/>
 			<apply_if maxzoom="16" textSize="12"/>
 			<apply_if minzoom="17" textSize="13"/>
 			<apply_if nightMode="true" textColor="#d4d4ff" textHaloColor="#994563a7"/>
@@ -346,11 +351,6 @@
 			<apply_if nightMode="true" textColor="$subwayEntranceTextColorNight" textHaloColor="#bb4563a7"/>
 		</switch>-->
 	</text>
-
-	<!-- Zoom levels -->
-
-
-	<!-- Line styling -->
 
 	
 	<!-- Point styling -->
@@ -545,6 +545,8 @@
 	
 	<!-- Polygons -->
 	<!-- see Analysis -->
+
+	<!-- finished -->
 	
 	<!-- line styling -->
 	<line>

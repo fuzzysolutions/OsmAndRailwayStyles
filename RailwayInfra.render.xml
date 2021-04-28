@@ -25,7 +25,7 @@
 	<renderingAttribute name="landuseRailwayColor"> <!-- this is custom, not ORM. Todo: debug -->
 		<!-- <case nightMode="true" attrColorValue="$defaultColor"/> -->
 		<!-- <case moreDetailed="true" attrColorValue="#e0ddda"/> -->
-		<case attrColorValue="e2e2e2"/>	
+		<case attrColorValue="#e2e2e2"/>
 	</renderingAttribute>
 	<renderingAttribute name="highSpeedColor">
 		<!-- <case nightMode="true" attrColorValue="#25454d"/> -->
@@ -238,18 +238,23 @@
 	<renderingConstant name="railwayPOITextColorDay" value="$textStationColor"/>
 	<renderingConstant name="railwayTextColorDay" value="#585858"/>
 	<renderingConstant name="railwayTextHaloColorDay" value="#ffffff"/>
-	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="2"/>
-	<renderingConstant name="landuseManmadeTextHaloColor" value="$railwayTextHaloColorDay"/>
-	<renderingConstant name="landuseManmadeTextColor" value="$railwayTextColorDay"/>
+	<renderingConstant name="landuseRailwayTextHaloRadiusDay" value="2"/>
+	<renderingConstant name="landuseRailwayTextHaloColor" value="$railwayTextHaloColorDay"/>
+	<renderingConstant name="landuseRailwayTextColor" value="$railwayTextColorDay"/>
 
 	<renderingConstant name="railwayTextSize" value="14"/>
 	<renderingConstant name="railwayTextHaloRadius" value="2"/>
 
+	<renderingConstant name="trackRefTextColor" value="#ffffff"/>
+	<renderingConstant name="trackRefTextHaloColor" value="#0000ff"/>
+	<renderingConstant name="trackRefTextSize" value="14"/>
+
 
 	<text>
+		<!-- Railway line refs -->
 		<switch minzoom="8" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
 				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="251" textOnPath="true"
-				textBold="true" textMinDistance="30" textWrapWidth="10" >
+				textBold="true" textMinDistance="10" textWrapWidth="0" nameTag="ref">
 			<case tag="railway" value="rail"/>
 			<switch minzoom="9">
 				<case tag="railway" value="abandoned"/>
@@ -271,15 +276,45 @@
 				<case tag="railway" value="funicular"/>
 				<case minzoom="17" tag="railway" value="miniature"/>
 			</switch>
-
 		</switch>
-		<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay"
-				textHaloColor="$landuseManmadeTextHaloColor" textWrapWidth="20" textOrder="144">
-			<switch nameTag="">
-				<case minzoom="13" tag="landuse" value="railway"/>
-				<apply textColor="$landuseManmadeTextColor"/>
+		<!-- + Railway line names -->
+		<switch minzoom="8" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
+				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="250" textOnPath="true"
+				textBold="true" textMinDistance="10" textWrapWidth="0" >
+			<case tag="railway" value="rail" nameTag=""/>
+			<switch minzoom="9">
+				<case tag="railway" value="abandoned"/>
+				<case tag="railway" value="disused"/>
+				<case tag="railway" value="construction"/>
+				<case tag="railway" value="proposed"/>
+				<case tag="railway" value="preserved"/>
+			</switch>
+			<switch minzoom="10">
+				<case tag="railway" value="industrial"/>
+				<case tag="railway" value="narrow_gauge"/>
+				<case tag="railway" value="razed"/>
+				<case tag="railway" value="subway"/>
+				<case tag="railway" value="light_rail"/>
+			</switch>
+			<switch minzoom="11">
+				<case tag="railway" value="tram"/>
+				<case tag="railway" value="monorail"/>
+				<case tag="railway" value="funicular"/>
+				<case minzoom="17" tag="railway" value="miniature"/>
 			</switch>
 		</switch>
+		<!-- Without effect (tag missing): Track numbers -->
+		<switch minzoom="17" textColor="$trackRefTextColor" textHaloRadius="$railwayTextHaloRadius"
+				textHaloColor="$trackRefTextHaloColor" textSize="$trackRefTextSize" textOrder="251" textOnPath="true"
+				textBold="true" textMinDistance="30" textWrapWidth="10" nameTag="track_ref" >
+			<case tag="railway" value=""/>
+		</switch>
+		<!-- Railway landuse -->
+		<switch minzoom="13" textSize="$railwayTextSize" textHaloRadius="$landuseRailwayTextHaloRadiusDay" textColor="$landuseRailwayTextColor"
+				textHaloColor="$landuseRailwayTextHaloColor" textWrapWidth="0" textOrder="144" textItalic="true">
+			<case tag="landuse" value="railway" nameTag="" nameTag2="ref" />
+		</switch>
+		<!-- Railway POIs -->
 		<switch textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$railwayTextHaloRadius" textBold="true" nameTag="">
 			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true">
 				<!--<apply_if nightMode="true" textColor="#dddddd" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>-->
@@ -681,12 +716,12 @@
 						  strokeWidth_0="7" shadowRadius="4" shadowColor="$bridgeCasingColor" cap="BUTT"/>
 			</case>
 			<!-- not part of ORM, but interesting -->
-			<case minzoom="15" tag="railway" value="funicular" color="$funicularColor" strokeWidth="2" cap="ROUND"
+			<case minzoom="14" tag="railway" value="funicular" color="$funicularColor" strokeWidth="2" cap="ROUND"
 			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 					<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
 							  strokeWidth_0="6" shadowRadius="4" shadowColor="$bridgeCasingColor" cap="BUTT"/>
 			</case>
-			<case minzoom="15" tag="railway" value="monorail" color="$monoRailColor" strokeWidth="2" cap="ROUND"
+			<case minzoom="14" tag="railway" value="monorail" color="$monoRailColor" strokeWidth="2" cap="ROUND"
 			shadowRadius="$railwayCasingRadius" shadowColor="$railwayCasingColor">
 					<apply_if additional="bridge=yes" color_0="$railwayCasingColor"
 							  strokeWidth_0="6" shadowRadius="4" shadowColor="$bridgeCasingColor" cap="BUTT"/>

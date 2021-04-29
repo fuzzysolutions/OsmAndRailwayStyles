@@ -1,4 +1,4 @@
-<renderingStyle name="RailwayInfra" depends="mapnik" defaultColor="#f1eae4" version="1.0">
+<renderingStyle name="RailwayInfra" depends="mapnik" defaultColor="#f1eae4" version="2.0">
 <!-- OpenRailwayMap-inspired Rendering Style for OsmAnd by dvärgsignal -->	
 <renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>

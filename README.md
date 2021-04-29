@@ -1,8 +1,8 @@
 # OsmAndRailwayStyles
 Railway-focused offline map styles for the OsmAnd App (https://osmand.net/) adapting the colour scheme of OpenRailwayMap (https://www.openrailwaymap.org/).
 
-<img src="https://github.com/fuzzysolutions/OsmAndRailwayStyles/blob/master/Screenshots/praha.png" alt="Screenshot of v1.0" width="300"/>
-<img src="https://github.com/fuzzysolutions/OsmAndRailwayStyles/blob/master/Screenshots/leipzig.png" alt="Screenshot of v2.0" width="300"/>
+<img src="https://github.com/fuzzysolutions/OsmAndRailwayStyles/blob/master/Screenshots/praha v1.png" alt="Screenshot of v1.0" width="300"/>
+<img src="https://github.com/fuzzysolutions/OsmAndRailwayStyles/blob/master/Screenshots/leipzig - v2.png" alt="Screenshot of v2.0" width="300"/>
 
 
 # Status of Development

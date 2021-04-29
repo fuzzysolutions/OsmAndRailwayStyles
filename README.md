@@ -46,6 +46,8 @@ Key | Value | Included? (+ Comment)
 `railway` | `switch, signal` | No
 `bridge, tunnel` | _any_ | Yes
 `landuse` | `railway` | Yes
+`operator` | _any_ | Yes, but may overlap with `route=*` operators
+
 
 # License
 This code is licensed under GPLv3.

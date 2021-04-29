@@ -253,8 +253,8 @@
 	<text>
 		<!-- Railway line refs -->
 		<switch minzoom="8" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
-				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="251" textOnPath="true"
-				textBold="true" textMinDistance="10" textWrapWidth="0" nameTag="ref">
+				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="1" textOnPath="true"
+				textBold="true" textMinDistance="30" textWrapWidth="10" nameTag="ref">
 			<case tag="railway" value="rail"/>
 			<switch minzoom="9">
 				<case tag="railway" value="abandoned"/>
@@ -271,41 +271,57 @@
 				<case tag="railway" value="light_rail"/>
 			</switch>
 			<switch minzoom="11">
-				<case tag="railway" value="tram"/>
+				<case tag="railway" value="tram" nameTag="ref"/>
 				<case tag="railway" value="monorail"/>
 				<case tag="railway" value="funicular"/>
 				<case minzoom="17" tag="railway" value="miniature"/>
 			</switch>
 		</switch>
 		<!-- + Railway line names -->
-		<switch minzoom="8" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
-				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="250" textOnPath="true"
-				textBold="true" textMinDistance="10" textWrapWidth="0" >
+		<switch minzoom="10" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
+				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="1" textOnPath="true"
+				textBold="true" textMinDistance="30" textWrapWidth="10" >
 			<case tag="railway" value="rail" nameTag=""/>
-			<switch minzoom="9">
-				<case tag="railway" value="abandoned"/>
-				<case tag="railway" value="disused"/>
-				<case tag="railway" value="construction"/>
-				<case tag="railway" value="proposed"/>
-				<case tag="railway" value="preserved"/>
-			</switch>
-			<switch minzoom="10">
-				<case tag="railway" value="industrial"/>
-				<case tag="railway" value="narrow_gauge"/>
-				<case tag="railway" value="razed"/>
-				<case tag="railway" value="subway"/>
-				<case tag="railway" value="light_rail"/>
-			</switch>
+			<case tag="railway" value="abandoned" nameTag=""/>
+			<case tag="railway" value="disused" nameTag=""/>
+			<case tag="railway" value="construction" nameTag=""/>
+			<case tag="railway" value="proposed" nameTag=""/>
+			<case tag="railway" value="preserved" nameTag=""/>
+			<case tag="railway" value="industrial" nameTag=""/>
+			<case tag="railway" value="narrow_gauge" nameTag=""/>
+			<case tag="railway" value="razed" nameTag=""/>
+			<case tag="railway" value="subway" nameTag=""/>
+			<case tag="railway" value="light_rail" nameTag=""/>
 			<switch minzoom="11">
-				<case tag="railway" value="tram"/>
-				<case tag="railway" value="monorail"/>
-				<case tag="railway" value="funicular"/>
-				<case minzoom="17" tag="railway" value="miniature"/>
+				<case tag="railway" value="tram" nameTag=""/>
+				<case tag="railway" value="monorail" nameTag=""/>
+				<case tag="railway" value="funicular" nameTag=""/>
+				<case minzoom="17" tag="railway" value="miniature"  nameTag=""/>
 			</switch>
+		</switch>
+		<!-- + Railway operators -->
+		<switch minzoom="18" textColor="$railwayTextColorDay" textHaloRadius="$railwayTextHaloRadius"
+				textHaloColor="$railwayTextHaloColorDay" textSize="$railwayTextSize" textOrder="15" textOnPath="true"
+				textItalic="true" textMinDistance="30" textWrapWidth="10" >
+			<case tag="railway" value="rail" nameTag="operator"/>
+			<case tag="railway" value="abandoned" nameTag="operator"/>
+			<case tag="railway" value="disused" nameTag="operator"/>
+			<case tag="railway" value="construction" nameTag="operator"/>
+			<case tag="railway" value="proposed" nameTag="operator"/>
+			<case tag="railway" value="preserved" nameTag="operator"/>
+			<case tag="railway" value="industrial" nameTag="operator"/>
+			<case tag="railway" value="narrow_gauge" nameTag="operator"/>
+			<case tag="railway" value="razed" nameTag="operator"/>
+			<case tag="railway" value="subway" nameTag="operator"/>
+			<case tag="railway" value="light_rail" nameTag="operator"/>
+			<case tag="railway" value="tram" nameTag="operator"/>
+			<case tag="railway" value="monorail" nameTag="operator"/>
+			<case tag="railway" value="funicular" nameTag="operator"/>
+			<case minzoom="17" tag="railway" value="miniature"  nameTag="operator"/>
 		</switch>
 		<!-- Without effect (tag missing): Track numbers -->
 		<switch minzoom="17" textColor="$trackRefTextColor" textHaloRadius="$railwayTextHaloRadius"
-				textHaloColor="$trackRefTextHaloColor" textSize="$trackRefTextSize" textOrder="251" textOnPath="true"
+				textHaloColor="$trackRefTextHaloColor" textSize="$trackRefTextSize" textOrder="5" textOnPath="true"
 				textBold="true" textMinDistance="30" textWrapWidth="10" nameTag="track_ref" >
 			<case tag="railway" value=""/>
 		</switch>

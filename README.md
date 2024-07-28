@@ -13,11 +13,9 @@ Feel free to contribute. Note that I copied some snippets of interest from the O
 
 # Setup
 1. Download the [latest release](https://github.com/fuzzysolutions/OsmAndRailwayStyles/releases/latest) of the RailwayInfra.render.xml file
-2. Move it to the "rendering" folder of the OsmAnd installation directory on your phone, the path is:
-   * OsmAnd (free version): ~\Android\data\net.osmand\files\rendering
-   * OsmAnd Plus (paid version): ~\Android\data\net.osmand.plus\files\rendering
-3. Restart OsmAnd (Close it in the Task Switcher)
-4. Open OsmAnd menu, choose "Configure Map" -> "Map Style" and select "RailwayInfra"
+2. Open OsmAnd menu&mdash;"Maps and Resources"&mdash;"Local"&mdash;"Display Styles"
+3. Open the 'three dots' menu to the top right&mdash;"import"&mdash;Navigate to the file and import it
+4. Open OsmAnd menu, choose "Configure Map"&mdash;"Map Style" (you need to scroll down a bit, to finde "Map Style") and select "RailwayInfra"
 
 # Visible Features
 Not every topic of interest for railway mapping is contained within the standard *.obf files provided by OsmAnd.

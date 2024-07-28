@@ -14,8 +14,8 @@ Feel free to contribute. Note that I copied some snippets of interest from the O
 # Setup
 1. Download the [latest release](https://github.com/fuzzysolutions/OsmAndRailwayStyles/releases/latest) of the RailwayInfra.render.xml file
 2. Open OsmAnd menu&mdash;"Maps and Resources"&mdash;"Local"&mdash;"Display Styles"
-3. Open the 'three dots' menu to the top right&mdash;"import"&mdash;Navigate to the file and import it
-4. Open OsmAnd menu, choose "Configure Map"&mdash;"Map Style" (you need to scroll down a bit, to finde "Map Style") and select "RailwayInfra"
+3. Open the 'three dots' menu to the top right&mdash;"Import"&mdash;Navigate to the file and import it
+4. Open OsmAnd menu, choose "Configure Map"&mdash;"Map Style" (you need to scroll down a bit, to find "Map Style") and select "RailwayInfra"
 
 # Visible Features
 Not every topic of interest for railway mapping is contained within the standard *.obf files provided by OsmAnd.
